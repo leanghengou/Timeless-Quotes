@@ -1,4 +1,5 @@
 import { prismaDatabase } from "@/lib/prisma";
+import Nav from "../Nav";
 import DroppingStack from "./DroppingStack";
 import "./quote-page-custom.css";
 
@@ -48,8 +49,13 @@ export default async function QuotePage({ params }: any) {
   {/* Optional Overlay */}
   <div className="absolute inset-0 bg-black/40" />
 
+  {/* Nav floats over the video so the stack stays centred in the viewport */}
+  <div className="absolute inset-x-0 top-0 z-20">
+    <Nav />
+  </div>
+
   {/* Content: Osmo Dropping Cards Stack of the author's quotes */}
-  <div className="relative z-10 min-h-screen flex items-center justify-center px-4 py-16">
+  <div className="relative z-10 min-h-screen flex items-center justify-center px-4 pt-28 pb-16">
     <DroppingStack quotes={stackQuotes} />
   </div>
 </section>

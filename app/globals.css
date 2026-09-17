@@ -1,6 +1,8 @@
 @import "tailwindcss";
 
 :root {
+  --home-cream: #efe6d4;
+  --home-muted: #a89d8b;
   --background: #ffffff;
   --foreground: #171717;
 }

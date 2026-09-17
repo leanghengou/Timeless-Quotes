@@ -1,0 +1,57 @@
+/* Site nav (used on every page) */
+
+.site-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  padding: 1rem 2rem;
+}
+
+.site-nav__logo {
+  font-family: var(--font-tiro), serif;
+  font-size: 1.75rem;
+  line-height: 1;
+  color: var(--home-cream);
+}
+
+.site-nav__links {
+  display: flex;
+  align-items: center;
+  gap: 1.75rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.site-nav__link {
+  font-size: 0.875rem;
+  white-space: nowrap;
+  color: var(--home-cream);
+  transition: color 0.2s ease;
+}
+
+.site-nav__link:hover {
+  color: #ffffff;
+}
+
+@media (max-width: 767px) {
+  .site-nav {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding: 1rem 1.25rem;
+  }
+
+  .site-nav__logo {
+    font-size: 1.5rem;
+  }
+
+  .site-nav__links {
+    gap: 1.25rem;
+  }
+
+  .site-nav__link {
+    font-size: 0.8125rem;
+  }
+}

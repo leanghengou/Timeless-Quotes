@@ -1,46 +1,55 @@
 import Image from "next/image";
-import "./page-custom.css";
 import Link from "next/link";
+import Nav from "./Nav";
+import "./page-custom.css";
 
+const authors = [
+  { slug: "miyamoto-musashi", name: "Musashi", image: "/media-assets/musashi-card.webp" },
+  { slug: "marcus-aurelius", name: "Marcus Aurelius", image: "/media-assets/marcus-aurelius-card.webp" },
+  { slug: "napoleon-bonaparte", name: "Napoleon", image: "/media-assets/napoleon-card.webp" },
+  { slug: "seneca", name: "Seneca", image: "/media-assets/seneca-card.webp" },
+];
 
 export default function Home() {
   return (
-    <div
-     style={{backgroundImage: `url('/media-assets/homepage-background.webp')`,}}
-    className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black bg-cover bg-center">
-      <main className="w-fit">
-        <section>
-  <ul className="grid grid-cols-2 md:grid-cols-4 gap-4 p-20">
-  <li>
-    <Link href="/marcus-aurelius"> 
-    <Image className="w-full drop-shadow-md cursor-pointer" src="/media-assets/marcus-aurelius-card.webp" 
-    alt="Marcus Aurelius"
-  width={400}
-  height={600}/>
-   </Link>
+    <div className="home">
+      <Nav />
 
-  <h2></h2>
-  
-  </li>
-  <li>
-    <Link href="/miyamoto-musashi">
-    <Image className="w-full drop-shadow-md cursor-pointer" src="/media-assets/musashi-card.webp" alt="Musashi"  width={400}
-  height={600}/>
-    </Link>
-    </li>
+      <main className="home__main">
+        <section className="home__intro">
+          <p className="home__tagline">
+            The platform built to inspired and motivated youths.
+          </p>
+          <p className="home__tagline">
+            <Link href="/membership" className="home__link">Become a member</Link> to save your
+            favorites quotes.
+          </p>
+        </section>
 
-  <li>
-    
-    <Link href="/napoleon-bonaparte"><Image className="w-full drop-shadow-md cursor-pointer" src="/media-assets/napoleon-card.webp" alt="Napoleon"   width={400}
-  height={600}/></Link></li>
-  <li>
-    <Link href="/seneca">
-    
-    <Image  className="w-full drop-shadow-md cursor-pointer" src="/media-assets/seneca-card.webp"alt="Seneca"  width={400}
-  height={600} /></Link></li>
+        <section aria-label="Authors">
+          <ul className="home__authors">
+            {authors.map((author) => (
+              <li key={author.slug} className="author-card">
+                <Link href={`/${author.slug}`} className="author-card__image-link">
+                  <Image
+                    className="author-card__image"
+                    src={author.image}
+                    alt={author.name}
+                    width={400}
+                    height={578}
+                  />
+                </Link>
 
- </ul>
-</section>
+                <h2 className="author-card__name">
+                  <Link href={`/${author.slug}`}>{author.name}</Link>
+                </h2>
+                <Link href={`/${author.slug}/bio`} className="author-card__bio">
+                  Read bio
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </section>
       </main>
     </div>
   );
