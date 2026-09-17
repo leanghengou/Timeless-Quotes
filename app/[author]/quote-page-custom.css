@@ -11,3 +11,159 @@
   padding: 6rem;
   gap: 3rem;
 }
+
+/* ==========================================================================
+   Osmo — Dropping Cards Stack
+   ========================================================================== */
+
+.dropping-stack {
+  grid-column-gap: 2em;
+  grid-row-gap: 2em;
+  flex-flow: column;
+  align-items: center;
+  display: flex;
+}
+
+.dropping-stack__collection {
+  padding-top: 3em;
+  padding-right: 3em;
+}
+
+.dropping-stack__list {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  position: relative;
+}
+
+.dropping-stack__item {
+  will-change: transform, opacity;
+  -webkit-user-select: none;
+  user-select: none;
+  position: absolute;
+}
+
+.dropping-stack__item:nth-child(1) {
+  position: relative;
+}
+
+/* Card: quote on the paper texture (1208x836 image -> 69.2% aspect) */
+.dropping-stack-card {
+  color: #201d1d;
+  background-image: url("/media-assets/quote-card-paper.webp");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  width: min(40em, 100vw - 10em);
+  position: relative;
+}
+
+.dropping-stack-card__before {
+  padding-top: 69.2%;
+}
+
+.dropping-stack-card__content {
+  flex-flow: column;
+  justify-content: center;
+  gap: 2.5rem;
+  width: 100%;
+  height: 100%;
+  padding: 2.8em 4.4em;
+  display: flex;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+/* Big opening quote mark to the left of the text */
+.dropping-stack-card__quote {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.5rem;
+}
+
+.dropping-stack-card__mark {
+  flex: none;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 5.5rem;
+  font-weight: 700;
+  line-height: 0.6;
+  margin-top: 0.35rem;
+  user-select: none;
+}
+
+.dropping-stack__controls {
+  grid-column-gap: .375em;
+  grid-row-gap: .375em;
+  display: flex;
+}
+
+.dropping-stack__control {
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.dropping-stack__control-circle {
+  color: #201d1d;
+  background-color: #f4f4f4;
+  border-radius: 50%;
+  flex: none;
+  justify-content: center;
+  align-items: center;
+  width: 3em;
+  height: 3em;
+  display: flex;
+  position: relative;
+  transition: transform 0.3s ease;
+  transform: translateY(0em) rotate(0.001deg);
+}
+
+.dropping-stack__control:hover .dropping-stack__control-circle {
+  transform: translateY(-0.25em) rotate(0.001deg);
+}
+
+.dropping-stack__control-circle.is--prev {
+  color: #f4f4f4;
+  background-color: #f4f4f433;
+}
+
+.dropping-stack__control-svg {
+  width: 40%;
+}
+
+.dropping-stack__control.is--prev {
+  transform: scaleX(-1);
+}
+
+@media screen and (max-width: 767px) {
+  .dropping-stack__collection {
+    padding-top: 2.25em;
+    padding-right: 2.25em;
+  }
+
+  .dropping-stack-card {
+    width: min(40em, 100vw - 6.5em);
+  }
+
+  .dropping-stack-card__before {
+    padding-top: 110%;
+  }
+
+  .dropping-stack-card__content {
+    gap: 1.25rem;
+    padding: 12vw 9vw;
+  }
+
+  .dropping-stack-card__quote {
+    gap: 0.75rem;
+  }
+
+  .dropping-stack-card__mark {
+    font-size: 3.5rem;
+    margin-top: 0.15rem;
+  }
+
+  .dropping-stack-card__content h2 {
+    font-size: clamp(1.125rem, 5.5vw, 2.25rem);
+  }
+}

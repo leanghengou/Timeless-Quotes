@@ -1,4 +1,5 @@
 import { prismaDatabase } from "@/lib/prisma";
+import DroppingStack from "./DroppingStack";
 import "./quote-page-custom.css";
 
 
@@ -15,19 +16,21 @@ export default async function QuotePage({ params }: any) {
            return searchedAuthor === authorName
          }
 
-           
+
         )
     }
 
 
 
     const authorQuotes = authorRandomQuote(quotes);
-    const selectedQuotes = authorQuotes[Math.floor(Math.random()*authorQuotes.length)]
+    const startIndex = Math.floor(Math.random()*authorQuotes.length)
+
+    // Rotate so the randomly chosen quote is the top card of the stack
+    const stackQuotes = [...authorQuotes.slice(startIndex), ...authorQuotes.slice(0, startIndex)]
+      .map((quote:any) => ({ text: quote.text, author: quote.author }))
 
 
-   
 
-    
   return (
 
     <section className="relative min-h-screen overflow-hidden">
@@ -45,37 +48,11 @@ export default async function QuotePage({ params }: any) {
   {/* Optional Overlay */}
   <div className="absolute inset-0 bg-black/40" />
 
-  {/* Content */}
-  <div className="relative z-10 container mx-auto  card-paper-custom">
-    <h2 className="text-4xl font-bold text-black leading-[1.2] italic">
-      {selectedQuotes.text}
-    </h2>
-
-
-    <div className="flex items-center gap-4 pt-4 border-t border-zinc-800">
-
-   {selectedQuotes.author === "Marcus Aurelius" && (
-  <img className="drop-shadow-lg" src="/media-assets/marcus-aurelius-card.webp" alt="Marcus Aurelius" width={80} height={100} />
-)}
-
- {selectedQuotes.author === "Seneca" && (
-  <img className="drop-shadow-lg" src="/media-assets/seneca-card.webp" alt="Marcus Aurelius" width={80} height={100} />
-)}
-
- {selectedQuotes.author === "Napoleon Bonaparte" && (
-  <img className="drop-shadow-lg" src="/media-assets/napoleon-card.webp" alt="Marcus Aurelius" width={80} height={100} />
-)}
-
- {selectedQuotes.author === "Miyamoto Musashi" && (
-  <img className="drop-shadow-lg" src="/media-assets/musashi-card.webp" alt="Marcus Aurelius" width={80} height={100} />
-)}
-
-    <h3 className="mt-4 text-xl text-black">
-      {selectedQuotes.author}
-    </h3>
-    </div>
+  {/* Content: Osmo Dropping Cards Stack of the author's quotes */}
+  <div className="relative z-10 min-h-screen flex items-center justify-center px-4 py-16">
+    <DroppingStack quotes={stackQuotes} />
   </div>
 </section>
-   
+
   );
 }
