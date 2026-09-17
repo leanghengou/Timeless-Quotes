@@ -5,7 +5,10 @@ const prismaReuse = new PrismaClient();
 
 async function main() {
   await prismaReuse.quote.deleteMany();
-  await prismaReuse.quote.createMany({ data: quotes });
+  await prismaReuse.quote.createMany({
+  data: quotes.map(item => ({ ...item, approved: true })),
+});
+  
   console.log(`Seeded ${quotes.length} quotes.`);
 }
 

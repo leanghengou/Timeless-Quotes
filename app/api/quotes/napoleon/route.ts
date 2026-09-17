@@ -6,6 +6,7 @@ export async function GET(){
    const quotes = await prismaDatabase.quote.findMany();
 const selectAuthor =  quotes.filter((author) => author.author  === "Napoleon Bonaparte");
 
+
    const randomQuote = selectAuthor[Math.floor(Math.random()*selectAuthor.length)]
 
     return Response.json(randomQuote);

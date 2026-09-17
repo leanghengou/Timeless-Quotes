@@ -1,0 +1,13 @@
+.card-paper-custom {
+  background-image: url("/media-assets/quote-card-paper.webp");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  flex-direction: column;
+  place-content: center;
+  width: 45rem;
+  height: 45rem;
+  display: flex;
+  padding: 6rem;
+  gap: 3rem;
+}
