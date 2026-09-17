@@ -1,5 +1,7 @@
 "use client";
 import { useState } from "react";
+import Nav from "../Nav";
+import "./submit-page.css";
 
 export default function SubmitPage() {
 
@@ -19,7 +21,7 @@ export default function SubmitPage() {
 
 
   const data = await response.json();
-    
+
 
   if(!response.ok){
     setMessage(data.error);
@@ -32,29 +34,49 @@ export default function SubmitPage() {
 
   }
 
-  
+  // "Where you read it" — collected in the UI only; the API doesn't store it yet
+  const [source, setSource] = useState("");
 
   return (
-    <div>
-      <h1>Submit a quote</h1>
+    <div className="submit">
+      <Nav />
 
-      <textarea
-        value={text}
-        onChange={e => setText(e.target.value)}
-        placeholder="The quote"
-      />
+      <main className="submit__main">
+        <form
+          className="submit__form"
+          onSubmit={(e) => {
+            e.preventDefault();
+            submitQuote();
+          }}
+        >
+          <textarea
+            className="submit__quote"
+            value={text}
+            onChange={e => setText(e.target.value)}
+            placeholder="Type the quote."
+            aria-label="The quote"
+            rows={3}
+          />
 
-      <input
-        value={author}
-        onChange={e => setAuthor(e.target.value)}
-        placeholder="Who said it"
-      />
+          <div className="submit__fields">
+            <label className="submit__field">
+              <span className="submit__label">Who said it</span>
+              <input
+                className="submit__input"
+                value={author}
+                onChange={e => setAuthor(e.target.value)}
+              />
+            </label>
 
-  
+           
+          </div>
 
-      <button onClick={submitQuote}>Submit</button>
-
-      {message && <p>{message}</p>}
+          <div className="submit__actions">
+            <button type="submit" className="submit__button">Send</button>
+            {message && <p className="submit__message">{message}</p>}
+          </div>
+        </form>
+      </main>
     </div>
   );
 }
