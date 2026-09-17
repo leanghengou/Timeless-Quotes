@@ -4,6 +4,7 @@ import "./nav.css";
 const navLinks = [
   { href: "/daily-quote", label: "Daily Quote" },
   { href: "/random-quotes", label: "Random Quotes" },
+  { href: "/submit-quote", label: "Submit a Quote" },
   { href: "/membership", label: "Be a member" },
 ];
 

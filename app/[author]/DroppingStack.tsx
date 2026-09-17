@@ -4,6 +4,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 import { useEffect, useRef } from "react";
+import VanillaTilt, { type HTMLVanillaTiltElement } from "vanilla-tilt";
 
 // Osmo "Dropping Cards Stack"
 // GSAP + Draggable + CustomEase are loaded from the CDN on mount, then the
@@ -414,13 +415,18 @@ export default function DroppingStack({ quotes }: { quotes: Quote[] }) {
 
     loadGsap()
       .then(() => {
-        if (!cancelled) cleanup = initDroppingCardsStack(stackEl);
+        if (cancelled) return;
+        cleanup = initDroppingCardsStack(stackEl);
+        // Tilt the paper on hover (init after Osmo so its clones are included)
+        const cards = Array.from(stackEl.querySelectorAll<HTMLVanillaTiltElement>(".dropping-stack-card"));
+        VanillaTilt.init(cards, { max: 6, speed: 400, perspective: 1200 });
       })
       .catch((err) => console.error(err));
 
     return () => {
       cancelled = true;
       cleanup?.();
+      stackEl.querySelectorAll<HTMLVanillaTiltElement>(".dropping-stack-card").forEach((c) => c.vanillaTilt?.destroy());
     };
   }, [quotes]);
 
