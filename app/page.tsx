@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import Nav from "./Nav";
+import Tilt from "./Tilt";
 import "./page-custom.css";
 
 const authors = [
@@ -30,15 +31,17 @@ export default function Home() {
           <ul className="home__authors">
             {authors.map((author) => (
               <li key={author.slug} className="author-card">
-                <Link href={`/${author.slug}`} className="author-card__image-link">
-                  <Image
-                    className="author-card__image"
-                    src={author.image}
-                    alt={author.name}
-                    width={400}
-                    height={578}
-                  />
-                </Link>
+                <Tilt className="author-card__tilt">
+                  <Link href={`/${author.slug}`} className="author-card__image-link">
+                    <Image
+                      className="author-card__image"
+                      src={author.image}
+                      alt={author.name}
+                      width={400}
+                      height={578}
+                    />
+                  </Link>
+                </Tilt>
 
                 <h2 className="author-card__name">
                   <Link href={`/${author.slug}`}>{author.name}</Link>

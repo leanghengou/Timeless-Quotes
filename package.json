@@ -9,18 +9,16 @@
     "lint": "eslint",
     "postinstall": "prisma skills sync || exit 0"
   },
-
-
   "prisma": {
     "seed": "tsx prisma/seed.ts"
   },
-  
   "dependencies": {
     "@prisma/client": "^6.19.3",
     "next": "16.3.5",
     "prisma": "^6.19.3",
     "react": "19.2.8",
-    "react-dom": "19.2.8"
+    "react-dom": "19.2.8",
+    "vanilla-tilt": "^1.8.1"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",

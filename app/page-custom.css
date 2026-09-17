@@ -64,13 +64,13 @@
   flex-direction: column;
 }
 
-.author-card__image-link {
-  display: block;
-  transition: transform 0.3s ease;
+.author-card__tilt {
+  transform-style: preserve-3d;
+  will-change: transform;
 }
 
-.author-card__image-link:hover {
-  transform: translateY(-0.25rem);
+.author-card__image-link {
+  display: block;
 }
 
 .author-card__image {
