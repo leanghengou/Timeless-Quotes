@@ -26,11 +26,12 @@ declare global {
 
 export type Quote = { text: string; author: string };
 
-const authorPortraits: Record<string, string> = {
-  "Marcus Aurelius": "/media-assets/marcus-aurelius-card.webp",
-  "Seneca": "/media-assets/seneca-card.webp",
-  "Napoleon Bonaparte": "/media-assets/napoleon-card.webp",
-  "Miyamoto Musashi": "/media-assets/musashi-card.webp",
+const authorCardBackgrounds: Record<string, string> = {
+  "Marcus Aurelius": "/media-assets/marcus-quote-card.webp",
+  "Seneca": "/media-assets/seneca-quote-card.webp",
+  "Napoleon Bonaparte": "/media-assets/napoleon-quote-card.webp",
+  "Miyamoto Musashi": "/media-assets/musashi-quote-card.webp",
+  "Robert Greene": "/media-assets/robert-quote-card.webp",
 };
 
 // Loads a script once; resolves immediately if it's already on the page.
@@ -403,7 +404,7 @@ const ChevronIcon = () => (
   </svg>
 );
 
-export default function DroppingStack({ quotes }: { quotes: Quote[] }) {
+export default function DroppingStack({ quotes }: { quotes: any }) {
   const stackRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -435,30 +436,26 @@ export default function DroppingStack({ quotes }: { quotes: Quote[] }) {
       <div data-dropping-stack-collection="" className="dropping-stack__collection">
         <div className="dropping-stack__list">
           {quotes.map((quote, i) => (
+            
             <div key={i} data-dropping-stack-item="" className="dropping-stack__item">
-              <div className="dropping-stack-card">
+              <div
+                className="dropping-stack-card"
+                style={
+                  authorCardBackgrounds[quote.author]
+                    ? { backgroundImage: `url(${authorCardBackgrounds[quote.author]})` }
+                    : undefined
+                }
+              >
                 <div className="dropping-stack-card__before"></div>
                 <div className="dropping-stack-card__content">
                   <div className="dropping-stack-card__quote">
                     <span className="dropping-stack-card__mark" aria-hidden="true">&ldquo;</span>
-                    <h2 className="text-4xl font-medium text-black leading-[1.3] italic">
+                    <h2 className="text-[1.62rem] font-medium text-black leading-[1.3] italic">
                       {quote.text}
                     </h2>
                   </div>
 
-                  <div className="flex items-center gap-4">
-                    {authorPortraits[quote.author] && (
-                      <img
-                        className="drop-shadow-lg"
-                        src={authorPortraits[quote.author]}
-                        alt={quote.author}
-                        width={80}
-                        height={100}
-                        draggable={false}
-                      />
-                    )}
-                    <h3 className="text-xl text-black">{quote.author}</h3>
-                  </div>
+                  <h3 className="text-base text-black">{quote.author}</h3>
                 </div>
               </div>
             </div>

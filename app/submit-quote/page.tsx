@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import Nav from "../Nav";
+import SubmitMessage from "./SubmitMessage";
 import "./submit-page.css";
 
 export default function SubmitPage() {
@@ -10,6 +11,7 @@ export default function SubmitPage() {
   const [author, setAuthor]=useState("")
 
   const [message, setMessage]= useState("")
+  const [isError, setIsError] = useState(false);
 
   async function submitQuote() {
 
@@ -24,11 +26,13 @@ export default function SubmitPage() {
 
 
   if(!response.ok){
+    setIsError(true);
     setMessage(data.error);
       return;
   }
 
-  setMessage("Thanks — submitted for review.")
+  setIsError(false);
+  setMessage("Thank you for your submission. It has been received and will be reviewed shortly.")
   setText("");
   setAuthor("");
 
@@ -73,10 +77,15 @@ export default function SubmitPage() {
 
           <div className="submit__actions">
             <button type="submit" className="submit__button">Send</button>
-            {message && <p className="submit__message">{message}</p>}
           </div>
         </form>
       </main>
+
+      <SubmitMessage
+        message={message}
+        isError={isError}
+        onClose={() => setMessage("")}
+      />
     </div>
   );
 }

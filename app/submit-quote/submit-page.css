@@ -6,7 +6,7 @@
   flex-direction: column;
   min-height: 100vh;
   color: var(--home-cream);
-  background-color: #131010;
+
 }
 
 .submit__main {
@@ -113,12 +113,64 @@
   color: #131010;
 }
 
-.submit__message {
+/* Success / error message ----------------------------------------------- */
+
+.submit-message {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  background: rgba(10, 8, 6, 0.72);
+  z-index: 20;
+}
+
+.submit-message__paper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  width: min(32rem, 100%);
+  aspect-ratio: 512 / 354;
+  padding: 4rem 3.5rem;
+  background-image: url("/media-assets/quote-card-paper.webp");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  text-align: center;
+}
+
+.submit-message__text {
   margin: 0;
+  color: #201d1d;
   font-family: var(--font-tiro), serif;
   font-style: italic;
-  font-size: 0.9375rem;
-  color: #8d8170;
+  font-size: 1.25rem;
+  line-height: 1.5;
+}
+
+.submit-message__link {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: #8a5a1f;
+  font-family: var(--font-tiro), serif;
+  font-size: 1rem;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+@media (max-width: 767px) {
+  .submit-message__paper {
+    padding: 3rem 2rem;
+  }
+
+  .submit-message__text {
+    font-size: 1.0625rem;
+  }
 }
 
 /* Responsive ----------------------------------------------------------- */
