@@ -5,10 +5,10 @@ import Tilt from "./Tilt";
 import "./page-custom.css";
 
 const authors = [
-  { slug: "miyamoto-musashi", name: "Musashi", image: "/media-assets/musashi-card.webp" },
-  { slug: "marcus-aurelius", name: "Marcus Aurelius", image: "/media-assets/marcus-aurelius-card.webp" },
-  { slug: "napoleon-bonaparte", name: "Napoleon", image: "/media-assets/napoleon-card.webp" },
-  { slug: "seneca", name: "Seneca", image: "/media-assets/seneca-card.webp" },
+  { slug: "miyamoto-musashi", name: "Musashi", image: "/media-assets/musashi-card.webp", bio: "/bio/musashi/musashi" },
+  { slug: "marcus-aurelius", name: "Marcus Aurelius", image: "/media-assets/marcus-aurelius-card.webp", bio: "/bio/musashi/marcus-aurelius" },
+  { slug: "napoleon-bonaparte", name: "Napoleon", image: "/media-assets/napoleon-card.webp", bio: "/bio/musashi/napoleon" },
+  { slug: "seneca", name: "Seneca", image: "/media-assets/seneca-card.webp", bio: "/bio/musashi/seneca" },
 ];
 
 export default function Home() {
@@ -19,11 +19,11 @@ export default function Home() {
       <main className="home__main">
         <section className="home__intro">
           <p className="home__tagline">
-            The platform built to inspired and motivated youths.
+            Share the words that move you. Post a quote and inspire the next generation.
           </p>
           <p className="home__tagline">
-            <Link href="/membership" className="home__link">Become a member</Link> to save your
-            favorites quotes.
+            <Link href="/submit-quote" className="home__link">Post a quote</Link> and share it with
+            the community.
           </p>
         </section>
 
@@ -46,7 +46,7 @@ export default function Home() {
                 <h2 className="author-card__name">
                   <Link href={`/${author.slug}`}>{author.name}</Link>
                 </h2>
-                <Link href={`/${author.slug}/bio`} className="author-card__bio">
+                <Link href={author.bio} className="author-card__bio">
                   Read bio
                 </Link>
               </li>

@@ -43,7 +43,7 @@ export default function SubmitMessage({
             Back to submit a quote
           </button>
         ) : (
-          <Link href="/" className="submit-message__link">
+          <Link href="/" className="btn">
             Back to homepage
           </Link>
         )}

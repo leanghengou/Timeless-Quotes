@@ -68,6 +68,7 @@ export default function SubmitPage() {
               <input
                 className="submit__input"
                 value={author}
+                placeholder="Type the name here..."
                 onChange={e => setAuthor(e.target.value)}
               />
             </label>
@@ -76,7 +77,7 @@ export default function SubmitPage() {
           </div>
 
           <div className="submit__actions">
-            <button type="submit" className="submit__button">Send</button>
+            <button type="submit" className="btn">Send</button>
           </div>
         </form>
       </main>

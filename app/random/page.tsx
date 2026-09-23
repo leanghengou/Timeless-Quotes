@@ -10,11 +10,14 @@ export default async function RandomQuotePage() {
    const quotes = await prismaDatabase.quote.findMany();
    const pickQuotes = quotes .sort(() => Math.random() - 0.5)
 
-const stackQuotes = pickQuotes.map((quote) => ({
-    text: quote.text,
-    author: quote.author,
-  }));
 
+
+ const stackQuotes = pickQuotes
+  .filter(item => item.approved)
+  .map(item => ({
+    text: item.text,
+    author: item.author,
+  }))
   
 
   return (

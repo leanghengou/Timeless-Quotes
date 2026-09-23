@@ -33,3 +33,90 @@ body {
   background-size: cover;
   background-position: center;
 }
+
+.btn {
+  background-image: url("/media-assets/btn-bg.webp") !important;
+  background-position: center !important;
+  background-size: contain !important;
+  padding: 21px 47px;
+  color: #47341F;
+  font-family: var(--font-tiro), serif;
+  background-repeat: no-repeat;
+  font-style: italic;
+  font-size: 1.3rem;
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  caret-color: transparent;
+  position: relative;
+  isolation: isolate;
+  /* elastic.out-style easing */
+  --ease-elastic: linear(
+    0, 0.218 2.1%, 0.862 6.5%, 1.114 9%, 1.211 11.3%, 1.215 12.4%, 1.165 14.4%,
+    1.015 19.6%, 0.968 22.5%, 0.958 24.9%, 0.992 32.2%, 1.009 38.3%, 1.002 50%, 1
+  );
+  transition:
+    transform 1.7s var(--ease-elastic),
+    filter 1s ease,
+    letter-spacing 1.3s var(--ease-elastic),
+    color 0.8s ease;
+  will-change: transform;
+}
+
+/* light sheen, masked to the scroll's shape */
+.btn::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: linear-gradient(
+    105deg,
+    transparent 35%,
+    rgba(255, 244, 214, 0.35) 50%,
+    transparent 65%
+  );
+  background-size: 250% 100%;
+  background-position: 150% 0;
+  background-repeat: no-repeat;
+  -webkit-mask: url("/media-assets/btn-bg.webp") center / contain no-repeat;
+  mask: url("/media-assets/btn-bg.webp") center / contain no-repeat;
+  mix-blend-mode: soft-light;
+  opacity: 0;
+}
+
+.btn:hover,
+.btn:focus-visible {
+  transform: translateY(-2px) scale(1.02) rotate(-0.5deg);
+  filter: drop-shadow(0 10px 14px rgba(0, 0, 0, 0.55))
+    drop-shadow(0 0 10px rgba(230, 190, 120, 0.2)) brightness(1.03);
+  color: #2e2114;
+}
+
+.btn:hover::after,
+.btn:focus-visible::after {
+  animation: btn-sheen 1.8s ease-out forwards;
+}
+
+.btn:active {
+  transform: translateY(1px) scale(0.96) rotate(0.2deg);
+  filter: drop-shadow(0 3px 5px rgba(0, 0, 0, 0.5)) brightness(0.97);
+  transition-duration: 0.12s;
+}
+
+@keyframes btn-sheen {
+  0% { background-position: 150% 0; opacity: 1; }
+  100% { background-position: -50% 0; opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn,
+  .btn:hover,
+  .btn:active {
+    transition: filter 0.2s ease, color 0.2s ease;
+    transform: none;
+  }
+  .btn:hover::after {
+    animation: none;
+  }
+}
