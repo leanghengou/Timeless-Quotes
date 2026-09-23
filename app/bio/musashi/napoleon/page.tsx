@@ -22,7 +22,7 @@ export default function NapoleonBio() {
             Napoleon Bonaparte
           </h1>
 
-          <p className="text-sm leading-7 text-[var(--home-cream)]/90">
+          <p className="text-sm leading-6 text-[var(--home-cream)]/90">
             Born in Ajaccio, Corsica, to minor nobility, Napoleon trained at French military
             academies and rose rapidly during the chaos of the French Revolution, distinguishing
             himself at the Siege of Toulon in 1793. He seized political power in a 1799 coup,

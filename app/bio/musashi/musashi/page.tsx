@@ -22,7 +22,7 @@ export default function MusashiBio() {
             Miyamoto Musashi
           </h1>
 
-          <p className="text-sm leading-7 text-[var(--home-cream)]/90">
+          <p className="text-sm leading-6 text-[var(--home-cream)]/90">
             Born in Harima Province, Japan, Musashi fought his first duel at age 13 and reportedly
             never lost across more than 60 recorded contests. His most famous duel was against
             Sasaki Kojirō on Ganryū Island in 1612, which he won using a wooden sword carved from

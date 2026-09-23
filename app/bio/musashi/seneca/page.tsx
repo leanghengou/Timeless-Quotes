@@ -22,7 +22,7 @@ export default function SenecaBio() {
             Seneca
           </h1>
 
-          <p className="text-sm leading-7 text-[var(--home-cream)]/90">
+          <p className="text-sm leading-6 text-[var(--home-cream)]/90">
             Born in Córdoba, Spain, Seneca trained in rhetoric and Stoic philosophy in Rome before a
             successful career as a lawyer and playwright brought him into imperial circles. Emperor
             Claudius exiled him to Corsica for eight years on adultery charges, but he was recalled

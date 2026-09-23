@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import VanillaTilt, { type HTMLVanillaTiltElement, type TiltOptions } from "vanilla-tilt";
+import VanillaTilt, { type TiltOptions } from "vanilla-tilt";
 
 type TiltProps = {
   children: React.ReactNode;
@@ -22,16 +22,18 @@ export default function Tilt({ children, className, options }: TiltProps) {
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const el = ref.current as HTMLVanillaTiltElement | null;
+    const el = ref.current;
     if (!el) return;
 
-    VanillaTilt.init(el, { ...defaultOptions, ...options });
+    // Own the instance rather than using VanillaTilt.init: init skips elements
+    // that still carry an instance, so a StrictMode remount (before the deferred
+    // destroy below) would leave the card with no working tilt.
+    const tilt = new VanillaTilt(el, {
+      ...defaultOptions,
+      ...options,
+    }) as VanillaTilt & { removeEventListeners(): void };
 
     return () => {
-      const tilt = el.vanillaTilt as
-        | (VanillaTilt & { removeEventListeners(): void })
-        | undefined;
-      if (!tilt) return;
       // vanilla-tilt's mouseleave schedules an uncancelled reset on the next frame;
       // destroying immediately nulls its element and that reset crashes. Stop
       // listening now, destroy after any pending reset has run.
