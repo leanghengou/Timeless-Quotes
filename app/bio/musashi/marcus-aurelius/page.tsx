@@ -22,7 +22,7 @@ export default function MarcusAureliusBio() {
             Marcus Aurelius
           </h1>
 
-          <p className="text-sm leading-7 text-[var(--home-cream)]/90">
+          <p className="text-sm leading-6 text-[var(--home-cream)]/90">
             Adopted as heir by Emperor Antoninus Pius, Marcus Aurelius came to power in 161 AD and
             initially ruled jointly with his adoptive brother Lucius Verus. His reign was dominated
             by crisis: the Antonine Plague (likely smallpox) devastated the empire, and he spent

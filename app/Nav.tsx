@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import "./nav.css";
 
@@ -12,8 +12,21 @@ const navLinks = [
 export default function Nav() {
   const [open, setOpen] = useState(false);
 
+  // Lock page scroll while the full-screen mobile menu is open
+  useEffect(() => {
+    if (!open) return;
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = prev;
+    };
+  }, [open]);
+
   return (
-    <header className={`site-nav${open ? " is-open" : ""}`}>
+    <header
+      className={`site-nav${open ? " is-open" : ""}`}
+      style={{ viewTransitionName: "site-nav" }}
+    >
       <Link href="/" className="site-nav__logo" onClick={() => setOpen(false)}>
         Timeless
       </Link>

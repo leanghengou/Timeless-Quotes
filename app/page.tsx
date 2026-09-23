@@ -3,6 +3,7 @@ import Link from "next/link";
 import Nav from "./Nav";
 import Tilt from "./Tilt";
 import "./page-custom.css";
+import { ViewTransition } from "react";
 
 const authors = [
   { slug: "miyamoto-musashi", name: "Musashi", image: "/media-assets/musashi-card.webp", bio: "/bio/musashi/musashi" },
@@ -13,6 +14,8 @@ const authors = [
 
 export default function Home() {
   return (
+
+    <ViewTransition enter="page-in" exit="page-out" default="none">
     <div className="home">
       <Nav />
 
@@ -55,5 +58,6 @@ export default function Home() {
         </section>
       </main>
     </div>
+    </ViewTransition>
   );
 }

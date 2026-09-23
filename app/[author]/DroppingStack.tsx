@@ -5,6 +5,7 @@
 
 import { useEffect, useRef } from "react";
 import VanillaTilt, { type HTMLVanillaTiltElement } from "vanilla-tilt";
+import PopUpProfile from "../components/pop-up-profile";
 
 // Osmo "Dropping Cards Stack"
 // GSAP + Draggable + CustomEase are loaded from the CDN on mount, then the
@@ -433,9 +434,10 @@ export default function DroppingStack({ quotes }: { quotes: any }) {
 
   return (
     <div ref={stackRef} data-dropping-stack-init="" className="dropping-stack">
+         <PopUpProfile />
       <div data-dropping-stack-collection="" className="dropping-stack__collection">
         <div className="dropping-stack__list">
-          {quotes.map((quote, i) => (
+          {quotes.map((quote: any, i:any) => (
             
             <div key={i} data-dropping-stack-item="" className="dropping-stack__item">
               <div
@@ -455,7 +457,7 @@ export default function DroppingStack({ quotes }: { quotes: any }) {
                     </h2>
                   </div>
 
-                  <h3 className="text-base text-black">{quote.author}</h3>
+                  <h3 className="text-base text-black author-name-tag">{quote.author}</h3>
                 </div>
               </div>
             </div>
@@ -474,6 +476,8 @@ export default function DroppingStack({ quotes }: { quotes: any }) {
           </div>
         </div>
       </div>
+
+   
     </div>
   );
 }

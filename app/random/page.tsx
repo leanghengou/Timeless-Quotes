@@ -4,6 +4,8 @@ import Nav from "../Nav";
 import DroppingStack from "../[author]/DroppingStack";
 import "../[author]/quote-page-custom.css";
 
+export const metadata = { title: "Random Quotes" };
+
 
 export default async function RandomQuotePage() {
 

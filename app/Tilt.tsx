@@ -28,7 +28,15 @@ export default function Tilt({ children, className, options }: TiltProps) {
     VanillaTilt.init(el, { ...defaultOptions, ...options });
 
     return () => {
-      el.vanillaTilt?.destroy();
+      const tilt = el.vanillaTilt as
+        | (VanillaTilt & { removeEventListeners(): void })
+        | undefined;
+      if (!tilt) return;
+      // vanilla-tilt's mouseleave schedules an uncancelled reset on the next frame;
+      // destroying immediately nulls its element and that reset crashes. Stop
+      // listening now, destroy after any pending reset has run.
+      tilt.removeEventListeners();
+      requestAnimationFrame(() => tilt.destroy());
     };
   }, [options]);
 

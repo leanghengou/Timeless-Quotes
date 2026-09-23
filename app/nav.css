@@ -75,21 +75,33 @@
     display: flex;
   }
 
-  /* Dropdown panel under the bar; hidden until .is-open */
+  /* Keep logo + burger above the full-screen panel */
+  .site-nav__logo,
+  .site-nav__burger {
+    position: relative;
+    z-index: 31;
+  }
+
+  /* Full-screen panel behind the bar; hidden until .is-open */
   .site-nav__menu {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
+    position: fixed;
+    inset: 0;
     z-index: 30;
-    display: none;
-    padding: 0.5rem 1.25rem 1.25rem;
+    display: block;
+    overflow-y: auto;
+    /* bar height (1rem padding x2 + 2.5rem burger) + gap */
+    padding: 5rem 1.25rem 1.25rem;
     background: #141110;
-    border-bottom: 1px solid rgba(239, 230, 212, 0.12);
+    /* Slide down on open, up on close; visibility keeps it out of tab order when closed */
+    transform: translateY(-100%);
+    visibility: hidden;
+    transition: transform 0.35s ease, visibility 0s linear 0.35s;
   }
 
   .site-nav.is-open .site-nav__menu {
-    display: block;
+    transform: translateY(0);
+    visibility: visible;
+    transition: transform 0.35s ease, visibility 0s linear 0s;
   }
 
   .site-nav__links {

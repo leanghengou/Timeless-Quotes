@@ -144,6 +144,10 @@
   transform: scaleX(-1);
 }
 
+
+.author-name-tag:hover{
+color: #761B18;
+}
 @media screen and (max-width: 767px) {
   .dropping-stack__collection {
     padding-top: 2.25em;
