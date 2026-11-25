@@ -36,15 +36,15 @@ export default async function RandomQuotePage() {
     <source src="/media-assets/quote-page-video-bg-shorter.mp4" type="video/mp4" />
   </video>
 
-  {/* Optional Overlay */}
+
   <div className="absolute inset-0 bg-black/40" />
 
-  {/* Nav floats over the video so the stack stays centred in the viewport */}
+
   <div className="absolute inset-x-0 top-0 z-20">
     <Nav />
   </div>
 
-  {/* Content: Osmo Dropping Cards Stack of the author's quotes */}
+
   <div className="relative z-10 min-h-screen flex items-center justify-center px-4 pt-28 pb-16">
     <DroppingStack quotes={stackQuotes} />
   </div>
